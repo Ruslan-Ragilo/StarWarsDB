@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import './item-list.css';
-import SwapiService from "../../services/swapi-service";
 import Spinner from "../spinner/spinner";
 
 export default class ItemList extends Component {
@@ -39,7 +38,7 @@ export default class ItemList extends Component {
     const { itemList } = this.state;
 
     if (!itemList) {
-      return <Spinner />;
+      return <ul className="item-list list-group"><Spinner /></ul>;
     }
 
     const items = this.renderItems(itemList);
