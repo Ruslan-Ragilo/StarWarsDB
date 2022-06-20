@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 import './starship-details.css';
 import SwapiService from "../../../services/swapi-service";
-import ErrorButton from "../../error-button/error-button";
 import Spinner from '../../spinner/spinner';
 
 export default class StarshipDetails extends Component {
@@ -54,7 +53,8 @@ export default class StarshipDetails extends Component {
       return <span>Select a person from a list</span>;
     }
 
-    const { id, name } = starship;
+
+    const { id, name, model, crew, manufacturer } = starship;
 
     return (
       <div className="person-details card">
@@ -66,19 +66,18 @@ export default class StarshipDetails extends Component {
           <h4>{name}</h4>
           <ul className="list-group list-group-flush">
             <li className="list-group-item">
-              <span className="term">Gender</span>
-              {/* <span>{gender}</span> */}
+              <span className="term">Model</span>
+              <span>{model}</span>
             </li>
             <li className="list-group-item">
-              <span className="term">Birth Year</span>
-              {/* <span>{birthYear}</span> */}
+              <span className="term">Crew</span>
+              <span>{crew}</span>
             </li>
             <li className="list-group-item">
-              <span className="term">Eye Color</span>
-              {/* <span>{eyeColor}</span> */}
+              <span className="term">Manufacturer</span>
+              <span>{manufacturer}</span>
             </li>
           </ul>
-          <ErrorButton />
         </div>
       </div>
     )

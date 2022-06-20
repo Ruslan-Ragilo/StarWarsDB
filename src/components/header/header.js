@@ -12,9 +12,9 @@ const Header = () => {
         </a>
       </h3>
       <ul className="d-flex">
-        <li><Link to={`/`}> People </Link></li>
-        <li><Link to={`/planet-page`}> Planets </Link></li>
-        <li><Link to={`/starship-page`}> Starships </Link></li>
+        <li><Link to={`/people`}> People </Link></li>
+        <li><Link to={`/planet`}>Planets</Link></li>
+        <li><Link to={`/starship`}> Starships </Link></li>
       </ul>
     </div>
   );

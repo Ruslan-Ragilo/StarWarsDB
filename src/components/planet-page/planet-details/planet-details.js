@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 import './planet-details.css';
 import SwapiService from "../../../services/swapi-service";
-import ErrorButton from "../../error-button/error-button";
 import Spinner from '../../spinner/spinner';
 
 export default class PlanetDetails extends Component {
@@ -54,7 +53,7 @@ export default class PlanetDetails extends Component {
       return <span>Select a person from a list</span>;
     }
 
-    const { id, name } = planet;
+    const { id, name, population,rotationPeriod, diameter } = planet;
 
     return (
       <div className="person-details card">
@@ -66,19 +65,18 @@ export default class PlanetDetails extends Component {
           <h4>{name}</h4>
           <ul className="list-group list-group-flush">
             <li className="list-group-item">
-              <span className="term">Gender</span>
-              {/* <span>{gender}</span> */}
+              <span className="term">Population</span>
+              <span>{population}</span>
             </li>
             <li className="list-group-item">
-              <span className="term">Birth Year</span>
-              {/* <span>{birthYear}</span> */}
+              <span className="term">Rotation Period</span>
+              <span>{rotationPeriod}</span>
             </li>
             <li className="list-group-item">
-              <span className="term">Eye Color</span>
-              {/* <span>{eyeColor}</span> */}
+              <span className="term">Diameter</span>
+              <span>{diameter}</span>
             </li>
           </ul>
-          <ErrorButton />
         </div>
       </div>
     )

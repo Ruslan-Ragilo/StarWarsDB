@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 
 import Header from '../header';
 import RandomPlanet from '../random-planet';
-import ErrorButton from '../error-button';
 import ErrorIndicator from '../error-indicator';
-import PeoplePage from '../people-page';
 
 import './app.css';
 import SwapiService from "../../services/swapi-service";
 import PlanetPage from '../planet-page/planet-page';
 import StarshipPage from '../starship-page/starship-page';
+import PeoplePage from '../people-page/people-page';
 import { Route, Routes } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 
@@ -48,24 +47,12 @@ export default class App extends Component {
       <BrowserRouter>
         <div className="stardb-app">
           <Header />
-          { planet }
-
-          <div className="row mb2 button-row">
-            <button
-              className="toggle-planet btn btn-warning btn-lg"
-              onClick={this.toggleRandomPlanet}>
-              Toggle Random Planet
-            </button>
-            <ErrorButton />
-          </div>
-          
+            { planet }
             <Routes>
-                <Route path="/" element={<PeoplePage />} />
-                
-                <Route path="/planet-page>" element={<PlanetPage />} />
-                <Route path="/starship-page" element={<StarshipPage />} />
+                <Route path="/people" element={<PeoplePage />} />
+                <Route path="/planet" element={<PlanetPage />} />
+                <Route path="/starship" element={<StarshipPage />} />
             </Routes>
-        
         </div>
       </BrowserRouter>
     );
