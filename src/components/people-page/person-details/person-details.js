@@ -1,68 +1,67 @@
 import React, { Component } from 'react';
-import SwapiService from '../../services/swapi-service';
-import Spinner from '../spinner';
 
 import './person-details.css';
+import SwapiService from "../../../services/swapi-service";
+import ErrorButton from "../../error-button/error-button";
+import Spinner from '../../spinner/spinner';
 
 export default class PersonDetails extends Component {
 
-  swapi = new SwapiService();
+  swapiService = new SwapiService();
 
   state = {
     person: null,
-    loading: null,
-  }
-
-  constructor(props) {
-    super(props)
-  }
+    loading: false
+  };
 
   componentDidMount() {
-    this.updatePerson(this.props.idSelectedPerson);
+    this.updatePerson();
   }
 
-
   componentDidUpdate(prevProps) {
-    if(prevProps.idSelectedPerson !== this.props.idSelectedPerson) {
-      this.updatePerson(this.props.idSelectedPerson);
+    if (this.props.personId !== prevProps.personId) {
+      this.updatePerson();
     }
   }
 
   updatePerson() {
-    const {idSelectedPerson} = this.props;
-    if(!idSelectedPerson) {
+    const { personId } = this.props;
+    if (!personId) {
       return;
     }
     this.setState({
-      loading: true
+      loading: true,
     })
-    this.swapi.getPerson(idSelectedPerson)
-    .then(person => {
-      this.setState({
-        person,
-        loading: false,
-      })
-    })
+
+    this.swapiService
+      .getPerson(personId)
+      .then((person) => {
+        this.setState({ person,
+          loading: false, });
+      });
   }
 
   render() {
 
+    const { person } = this.state;
+
+
     if(this.state.loading) {
-      return <div className="person-details card"> <Spinner /> </div>
+      return <div className="person-details"> <Spinner /> </div>
     }
 
-    if(!this.state.person) {
-      return <span>Select a person from a list</span>
+    if (!person) {
+      return <span>Select a person from a list</span>;
     }
 
-    const {id, name, gender, birthYear, eyeColor} = this.state.person;
-
-    
+    const { id, name, gender,
+              birthYear, eyeColor } = person;
 
     return (
       <div className="person-details card">
         <img className="person-image"
-          src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`} />
+          src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}
+          alt="character"/>
 
         <div className="card-body">
           <h4>{name}</h4>
@@ -80,6 +79,7 @@ export default class PersonDetails extends Component {
               <span>{eyeColor}</span>
             </li>
           </ul>
+          <ErrorButton />
         </div>
       </div>
     )

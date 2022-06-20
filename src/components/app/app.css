@@ -1,5 +1,17 @@
-.wrapperApp {
-    max-width: 1600px;
-    margin: 0 auto;
-    padding: 0 20px;
+.button-row {
+  margin: 0 0 1rem 0;
+}
+
+.button-row button {
+  margin-right: 1rem;
+}
+
+.stardb-app .row {
+  margin-bottom: 1rem;
+}
+
+.stardb-app {
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
